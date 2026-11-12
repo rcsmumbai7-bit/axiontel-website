@@ -1,0 +1,128 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/sora";
+
+@theme {
+  --color-ink: #050a2e;
+  --color-ink-soft: #3b4266;
+  --color-muted: #6b7290;
+  --color-brand: #2440ff;
+  --color-brand-dark: #1a2fd6;
+  --color-sky: #5ab4f8;
+  --color-ice: #cde7fd;
+  --color-mist: #f3f7ff;
+  --color-line: #e3e9f6;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-ping-slow: ping-slow 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+  @keyframes ping-slow {
+    0% { transform: scale(0.6); opacity: 0.7; }
+    100% { transform: scale(1.8); opacity: 0; }
+  }
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body {
+  background: #ffffff;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--color-ice); color: var(--color-ink); }
+
+:focus-visible { outline: 2px solid var(--color-brand); outline-offset: 3px; border-radius: 6px; }
+
+@utility container-x {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+@utility section {
+  @apply py-20 sm:py-28;
+}
+
+@utility eyebrow {
+  @apply inline-flex items-center gap-2 rounded-full border border-line bg-white/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-brand backdrop-blur;
+}
+
+@utility h-display {
+  @apply font-display font-bold tracking-tight text-ink;
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 will-change-transform;
+}
+
+@utility btn-primary {
+  @apply btn bg-brand text-white shadow-[0_10px_30px_-10px_rgba(36,64,255,0.7)] hover:bg-brand-dark hover:shadow-[0_16px_40px_-12px_rgba(36,64,255,0.8)];
+}
+
+@utility btn-ghost {
+  @apply btn border border-line bg-white text-ink hover:border-brand/40 hover:text-brand;
+}
+
+@utility card {
+  @apply rounded-3xl border border-line bg-white shadow-[0_1px_0_rgba(5,10,46,0.04),0_20px_40px_-30px_rgba(5,10,46,0.25)];
+}
+
+@utility text-gradient {
+  @apply bg-gradient-to-r from-brand via-[#3b6dff] to-sky bg-clip-text text-transparent;
+}
+
+@utility prose-ax {
+  & p { @apply mb-4 leading-relaxed text-ink-soft; }
+  & h2 { @apply mt-10 mb-3 font-display text-2xl font-bold text-ink; }
+  & ul { @apply mb-4 list-disc space-y-2 pl-5 text-ink-soft; }
+}
+
+@utility input {
+  @apply w-full rounded-xl border border-line bg-white px-4 py-3 text-sm text-ink outline-none transition placeholder:text-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/10;
+}
+
+@utility label {
+  @apply mb-1.5 block text-xs font-semibold uppercase tracking-wider text-ink-soft;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(36, 64, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(36, 64, 255, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.mask-fade-x {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+
+.mask-fade-b {
+  -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent);
+  mask-image: linear-gradient(to bottom, #000 60%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
